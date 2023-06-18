@@ -24,7 +24,6 @@ cd pwa-example
 npm run dev
 ```
 
-![ea8f7ea0c6680a7a54ec8c5f80ceabce.png](:/493716b14e0d497bbba0a56bb373fcf2)
 4\. Install [next-pwa](https://www.npmjs.com/package/next-pwa) dependency
 
 ```
@@ -133,7 +132,7 @@ npm run start
 ```
 
 14. Visit to http://localhost:3000/
-    ![e50442b86d35faed45a7bde7ffeaf512.png](:/6b4fd62b363447b8bc09fdd9a14be52c)
 
 you can see the install button in your search bar menu. Click on that install the app.
-![bcd19219d60126eb4af2f3bda31e8a8e.png](:/1129ecf9611f426b89b390c75afcbe4f)
+
+![Screenshot from 2023-06-18 17-35-43](https://github.com/sharmapankaj01234/pwa-example/assets/10794547/6d2940ee-3dbd-42b4-ac09-c921bc5933ae)
