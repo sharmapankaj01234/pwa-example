@@ -1,34 +1,139 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+1\. create Next-app using npx
 
-## Getting Started
+```
+npx create-next-app pwa-example
 
-First, run the development server:
+✔ Would you like to use TypeScript with this project? … No / Yes
+✔ Would you like to use ESLint with this project? … No / Yes
+✔ Would you like to use Tailwind CSS with this project? … No / Yes
+✔ Would you like to use `src/` directory with this project? … No / Yes
+✔ Use App Router (recommended)? … No / Yes
+✔ Would you like to customize the default import alias? … No / Yes
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  Move to folder
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+cd pwa-example
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3.  Run the application and navigate to localhost:3000
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+![ea8f7ea0c6680a7a54ec8c5f80ceabce.png](:/493716b14e0d497bbba0a56bb373fcf2)
+4\. Install [next-pwa](https://www.npmjs.com/package/next-pwa) dependency
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm i next-pwa
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+6.  open the project in visual studio code
+7.  Use any online website to create manifest file or create manifest.json manually in public folder
 
-## Deploy on Vercel
+```
+{
+    "theme_color": "#f69435",
+    "background_color": "#f69435",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "pwa-example",
+    "short_name": "simple-pwa",
+    "description": "Simple pwa application",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+9.  create _document.js file in public folder
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+import { Html, Head, Main, NextScript } from 'next/document'
+export default function Document() {
+  return (
+    <Html>
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
+        <meta name="theme-color" content="#fff" />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+```
+
+10. Add following line to your next.config.js file
+
+```
+module.exports = {
+    reactStrictMode: true,
+};
+const withPWA = require('next-pwa')({
+    dest: 'public'
+  })
+  
+  module.exports = withPWA({
+  })
+```
+
+11. Add following line to src/app/layout.js file
+
+```
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="theme-color" content="#90cdf4" />
+      </head>
+      <body className={inter.className}>{children}</body>
+    </html>
+  )
+}
+```
+
+12. Run following command to create build pwa artificates in public folder.
+
+```
+npm run build
+```
+
+13. Run following command to start your application
+
+```
+npm run start
+```
+
+14. Visit to http://localhost:3000/
+    ![e50442b86d35faed45a7bde7ffeaf512.png](:/6b4fd62b363447b8bc09fdd9a14be52c)
+
+you can see the install button in your search bar menu. Click on that install the app.
+![bcd19219d60126eb4af2f3bda31e8a8e.png](:/1129ecf9611f426b89b390c75afcbe4f)
